@@ -26,7 +26,7 @@ document.onkeyup = function() {
 window.addEventListener('keydown', (KeyboardEvent) =>
     { console.log(KeyboardEvent.key)});
 
-    console.log(KeyboardEvent.key);
+    console.log( selected);
     guessed.push(selected);
     alert(guessed);
     guessed.sort();
