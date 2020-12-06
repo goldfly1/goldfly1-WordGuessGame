@@ -24,26 +24,30 @@ document.onkeyup = function() {
     selected = String.fromCharCode(KeyboardEvent.code).toLowerCase();
     alert(selected);*/
 window.addEventListener('keydown', (KeyboardEvent) =>
-    { console.log(KeyboardEvent.key)});
+    { console.log(KeyboardEvent.key);
+        selected = KeyboardEvent.key;
 
     console.log( selected);
     guessed.push(selected);
     alert(guessed);
-    guessed.sort();
+    guessed = guessed.sort();
     console.log("This is guessed array " + guessed);
     for (x=0;x< wordMatch.length;x++){
+        console.log(x);
+        console.log(wordMatch.charAt(x));
         if (selected === wordMatch.charAt(x)){
-            if (x = 0) {
-                (blank = selected + blank.slice(x+1, blank.length));
-            }else if (x = blank.length){
-                (blank = blank.slice(0, x-1) + selected);
-            }else blank = blank.slice(0, x-1) + selected + blank.slice(x+1, blank.length);
+            if (x === blank.length){
+                (blank = blank.slice(0, blank.length ) + selected);
+                alert("yes it does");}
+                else {blank = blank.slice(0, x) + selected + blank.slice(x+1);
+                alert("maybe it does");}
 
-         console.log(blank);
+            }
+            console.log(blank);
+            console.log(x);
         }
-}
 
-;
+} );
 /*if correct display letter in correct spaces.*/
 /*if wrong decrement # of guesses remaining and add selected to already guessed display.*/
 
