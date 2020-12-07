@@ -4,13 +4,14 @@ let misses = 5;
 let guessed = [];
 let wordMatch = "";
 let blank = "";
-let word="kale"; /**this will be drawn from database*/
-let numLets = word.length;
+let word = "";
+let randy = ["Fizzling","Quiz","Quinsy","Jives","Babbling","Bopped","Swizz","Shagginess","Zigzagging","Buzzed","Klutz","Ivory","Banjo","Azure","Blizzard","Baffles","Buffoon","Daiquiri","Queue","Groggy","Vortex","Voodoo","Schnapps","Schizophrenia","Zephyr","Spritz","Thriftless","Thumbscrew","Squawk","Voyeurism","Vaporize","Zodiac","Rhubarb","Transgress","Rickshaw","Snazzy","Quixotic","Knapsack","Jinx","Affix"];
 
-alert(numLets);
+word = randy[Math.floor(Math.random() * randy.length)].toLowerCase();
+
 for (x of word){
     blank = blank.concat(" _");
-    wordMatch = wordMatch.concat(" "+x);
+    wordMatch = wordMatch.concat(" "+ x );
 }
 
 
@@ -24,28 +25,16 @@ window.addEventListener('keydown', (KeyboardEvent) =>
     { console.log(KeyboardEvent.key);
         let keyIn = (KeyboardEvent.key);
         let good = false;
-        selected = keyIn.toLowerCase();
-    /*
-    if between a and z
-    if not on list
-    put on list
-    if not bad choice
-    */
-        if (keyIn => "a" || keyIn <= "z"){
-            console.log("keyIn ,",keyIn);
+        selected = keyIn.toLowerCase(););
 
-            console.log("guessed.indexOf(keyIn) ",guessed.indexOf(keyIn));
-
-            if (guessed.indexOf(keyIn) != false){
+        if (keyIn >= "a" && keyIn <= "z"){
+                if (guessed.indexOf(keyIn) === -1){
                 guessed.push(selected);
                 guessed = guessed.sort();
-                console.log("guessed.push(selected) ",guessed.push(selected));
-                console.log("wordMatch.indexOf(keyIn) ,",wordMatch.indexOf(keyIn));
-                if (wordMatch.indexOf(keyIn)==true){
+                if (wordMatch.indexOf(keyIn)!=-1){
                     good = true;
                         }else {
                             misses--;
-                            console.log("misses ",misses);
                             if( misses === 0){
                                 alert("Goodbye to you");
                                 location.reload();
@@ -57,9 +46,6 @@ window.addEventListener('keydown', (KeyboardEvent) =>
 
 
     if (good != false){
-    console.log( selected);
-    alert(guessed);
-    console.log("This is guessed array " + guessed);
     for (x=0;x< wordMatch.length;x++){
         if (selected === wordMatch.charAt(x)){
             if (x === blank.length){
@@ -80,13 +66,8 @@ window.addEventListener('keydown', (KeyboardEvent) =>
 
 }
 
-);
-/*if correct display letter in correct spaces.*/
-/*if wrong decrement # of guesses remaining and add selected to already guessed display.*/
 
-/*if no more letters are remaining congradulate the player*/
-/*if no more guesses are remaining hang the player*/
 
 /*   document.querySelector("#pattern").innerHTML = blank;
 
-/*load new word*/
+
