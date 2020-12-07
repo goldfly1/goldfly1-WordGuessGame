@@ -1,6 +1,6 @@
 
 let selected = "";
-let misses = 5;
+let misses = 6;
 let guessed = [];
 let wordMatch = "";
 let blank = "";
