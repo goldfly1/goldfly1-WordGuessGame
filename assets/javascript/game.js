@@ -36,18 +36,19 @@ window.addEventListener('keydown', (KeyboardEvent) =>
                             misses--;
                             if( misses === 0){
                                 update();
-                                alert("Goodbye to you");
+                                goodbye();
                                 location.reload();
                              }else {
                                 update();
-                                alert("Bad Choice.  You are one step closer."); }}
-                }else{ alert("Already chosen, try again.");}
-        } else { alert("You must chose a letter.  Try again.");}
+                                bad(); }}
+                }else{already();}
+        } else { wrongType();}
 
 
 
 
     if (good != false){
+        afraid();
     for (x=0;x< wordMatch.length;x++){
         if (selected === wordMatch.charAt(x)){
             if (x === blank.length){
@@ -57,13 +58,7 @@ window.addEventListener('keydown', (KeyboardEvent) =>
                 }
 
             }
-            update();
-            console.log(blank);
-            console.log(x);
-            if (blank === wordMatch){
-            alert("Gratz!  You Win!");
-            location.reload();
-            }
+            win();
         }
     }
 
@@ -77,6 +72,29 @@ function update() {
     document.querySelector("#steps").innerHTML = "Steps: "+ misses ;
     document.querySelector("#guessed").innerHTML = guessed;
     document.querySelector("#word").innerHTML = blank;
+  }
+  function win() {
+            update();
+            if (blank === wordMatch){
+            alert("Gratz!  You Win!");
+            location.reload();
+            }
+  }
+  function wrongType() {
+    document.querySelector("#billboard").innerHTML = "You must key a letter....";
+
+  }
+  function already() {
+    document.querySelector("#billboard").innerHTML = "Already used, go again: ";
+  }
+  function bad() {
+    document.querySelector("#billboard").innerHTML = "Bad choice. You are one step closer";
+  }
+  function goodbye() {
+    document.querySelector("#billboard").innerHTML = "Goodbye to you";
+  }
+  function afraid() {
+    document.querySelector("#billboard").innerHTML = "Don't let them see you're afraid kid!";
   }
 
 /*   document.querySelector("#pattern").innerHTML = blank;*/
