@@ -17,28 +17,30 @@ for (x of word){
 
 
 /*provide a guess the letter prompt with a list of already selected letters*/
-/*
-document.onkeyup = function() {
-    selected = String.fromCharCode(KeyboardEvent.code).toLowerCase();
-    alert(selected);*/
+
+
 window.addEventListener('keydown', (KeyboardEvent) =>
     { console.log(KeyboardEvent.key);
         let keyIn = (KeyboardEvent.key);
         let good = false;
-        selected = keyIn.toLowerCase(););
+        selected = keyIn.toLowerCase();
 
         if (keyIn >= "a" && keyIn <= "z"){
-                if (guessed.indexOf(keyIn) === -1){
+                if (guessed.indexOf(selected) === -1){
                 guessed.push(selected);
                 guessed = guessed.sort();
+                console.log("guessed  " + guessed);
                 if (wordMatch.indexOf(keyIn)!=-1){
                     good = true;
                         }else {
                             misses--;
                             if( misses === 0){
+                                update();
                                 alert("Goodbye to you");
                                 location.reload();
-                             }else {alert("Bad Choice.  You are one step closer."); }}
+                             }else {
+                                update();
+                                alert("Bad Choice.  You are one step closer."); }}
                 }else{ alert("Already chosen, try again.");}
         } else { alert("You must chose a letter.  Try again.");}
 
@@ -55,6 +57,7 @@ window.addEventListener('keydown', (KeyboardEvent) =>
                 }
 
             }
+            update();
             console.log(blank);
             console.log(x);
             if (blank === wordMatch){
@@ -66,8 +69,14 @@ window.addEventListener('keydown', (KeyboardEvent) =>
 
 }
 
+);/*This is the end of my event call*/
 
 
-/*   document.querySelector("#pattern").innerHTML = blank;
 
+function update() {
+    document.querySelector("#steps").innerHTML = "Steps: "+ misses ;
+    document.querySelector("#guessed").innerHTML = guessed;
+    document.querySelector("#word").innerHTML = blank;
+  }
 
+/*   document.querySelector("#pattern").innerHTML = blank;*/
