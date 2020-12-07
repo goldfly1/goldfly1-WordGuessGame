@@ -1,7 +1,6 @@
-/*pull a word from the dictionary not more than 12 letters not less than 7.*/
-/*display a the equivalent number of blanks spaces*/
+
 let selected = "";
-let misses = 9;
+let misses = 5;
 let guessed = [];
 let wordMatch = "";
 let blank = "";
@@ -23,12 +22,43 @@ document.onkeyup = function() {
     alert(selected);*/
 window.addEventListener('keydown', (KeyboardEvent) =>
     { console.log(KeyboardEvent.key);
-        selected = (KeyboardEvent.key);
+        let keyIn = (KeyboardEvent.key);
+        let good = false;
+        selected = keyIn.toLowerCase();
+    /*
+    if between a and z
+    if not on list
+    put on list
+    if not bad choice
+    */
+        if (keyIn => "a" || keyIn <= "z"){
+            console.log("keyIn ,",keyIn);
 
+            console.log("guessed.indexOf(keyIn) ",guessed.indexOf(keyIn));
+
+            if (guessed.indexOf(keyIn) != false){
+                guessed.push(selected);
+                guessed = guessed.sort();
+                console.log("guessed.push(selected) ",guessed.push(selected));
+                console.log("wordMatch.indexOf(keyIn) ,",wordMatch.indexOf(keyIn));
+                if (wordMatch.indexOf(keyIn)==true){
+                    good = true;
+                        }else {
+                            misses--;
+                            console.log("misses ",misses);
+                            if( misses === 0){
+                                alert("Goodbye to you");
+                                location.reload();
+                             }else {alert("Bad Choice.  You are one step closer."); }}
+                }else{ alert("Already chosen, try again.");}
+        } else { alert("You must chose a letter.  Try again.");}
+
+
+
+
+    if (good != false){
     console.log( selected);
-    guessed.push(selected);
     alert(guessed);
-    guessed = guessed.sort();
     console.log("This is guessed array " + guessed);
     for (x=0;x< wordMatch.length;x++){
         if (selected === wordMatch.charAt(x)){
@@ -43,11 +73,14 @@ window.addEventListener('keydown', (KeyboardEvent) =>
             console.log(x);
             if (blank === wordMatch){
             alert("Gratz!  You Win!");
-            location.reload();;
+            location.reload();
             }
         }
+    }
 
-} );
+}
+
+);
 /*if correct display letter in correct spaces.*/
 /*if wrong decrement # of guesses remaining and add selected to already guessed display.*/
 
