@@ -68,7 +68,7 @@ window.addEventListener('keydown', (KeyboardEvent) =>
 
 
 
-function update() {
+  function update() {
     document.querySelector("#steps").innerHTML = "Steps: "+ misses ;
     document.querySelector("#guessed").innerHTML = guessed;
     document.querySelector("#word").innerHTML = blank;
