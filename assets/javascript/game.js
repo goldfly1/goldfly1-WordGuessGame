@@ -6,7 +6,7 @@ let wordMatch = "";
 let blank = "";
 let word = "";
 let randy = ["Fizzling","Quiz","Quinsy","Jives","Babbling","Bopped","Swizz","Shagginess","Zigzagging","Buzzed","Klutz","Ivory","Banjo","Azure","Blizzard","Baffles","Buffoon","Daiquiri","Queue","Groggy","Vortex","Voodoo","Schnapps","Schizophrenia","Zephyr","Spritz","Thriftless","Thumbscrew","Squawk","Voyeurism","Vaporize","Zodiac","Rhubarb","Transgress","Rickshaw","Snazzy","Quixotic","Knapsack","Jinx","Affix"];
-
+let youWin = false;
 word = randy[Math.floor(Math.random() * randy.length)].toLowerCase();
 
 for (x of word){
@@ -49,7 +49,7 @@ window.addEventListener('keydown', (KeyboardEvent) =>
 
     if (good != false){
         afraid();
-    for (x=0;x< wordMatch.length;x++){
+    for (x=0;x < wordMatch.length;x++){
         if (selected === wordMatch.charAt(x)){
             if (x === blank.length){
                 (blank = blank.slice(0, blank.length ) + selected);
@@ -59,6 +59,13 @@ window.addEventListener('keydown', (KeyboardEvent) =>
 
             }
             win();
+
+            if (youWin === true){
+            break;
+            }
+        }
+        if (youWin === true){
+          location.reload();
         }
     }
 
@@ -77,7 +84,7 @@ window.addEventListener('keydown', (KeyboardEvent) =>
             update();
             if (blank === wordMatch){
             alert("Gratz!  You Win!\n\n"+word.toUpperCase());
-            location.reload();
+            youWin = true;
             }
   }
   function wrongType() {
