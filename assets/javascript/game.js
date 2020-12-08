@@ -76,7 +76,7 @@ window.addEventListener('keydown', (KeyboardEvent) =>
   function win() {
             update();
             if (blank === wordMatch){
-            alert("Gratz!  You Win!");
+            alert("Gratz!  You Win!\n\n"+word.toUpperCase());
             location.reload();
             }
   }
